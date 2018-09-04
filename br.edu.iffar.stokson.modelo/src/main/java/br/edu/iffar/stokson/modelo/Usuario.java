@@ -1,5 +1,4 @@
 package br.edu.iffar.stokson.modelo;
-
 /**
  * <p>
  * Entidade (classe persistivel) que representa os dados de um operador do

@@ -2,6 +2,16 @@ package br.edu.iffar.stokson.modelo;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 /**
  * <p>
  * Entidade que representa um produto.
@@ -10,13 +20,27 @@ import java.util.Date;
  * @author Fernando Luis
  * @since 29 de ago de 2018 21:46:21
  */
+@Entity
 public class Produto extends Entidade {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idProduto;
+	@Column(length = 13)
 	private String codigoBarras;
+	@Column(nullable = false, length = 50)
 	private String descricao;
+	@Column(nullable = false)
 	private float quantidadeMinima;
+	@Column(nullable = false)
+	@Temporal(TemporalType.DATE)
 	private Date dataValidade;
+	@ManyToOne
+	@Column(nullable = false)
+	@JoinColumn(name = "idCategoriaProduto")
 	private CategoriaProduto categoriaProduto;
+	@ManyToOne
+	@Column
+	@JoinColumn(name = "idUnidadeMedida")
 	private UnidadeMedida unidadeMedida;
 
 	public long getIdProduto() {

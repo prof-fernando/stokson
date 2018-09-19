@@ -1,4 +1,11 @@
 package br.edu.iffar.stokson.modelo;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * <p>
  * Entidade (classe persistivel) que representa os dados de um operador do
@@ -8,10 +15,16 @@ package br.edu.iffar.stokson.modelo;
  * @author fernando
  * @since 28/08/2018 20:27
  */
+@Entity
 public class Usuario extends Entidade {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idUsuario;
+	@Column(nullable = false, length = 45)
 	private String nome;
+	@Column(nullable = false, length = 200)
 	private String email;
+	@Column(nullable = false, length = 300)
 	private String senha;
 
 	public long getIdUsuario() {

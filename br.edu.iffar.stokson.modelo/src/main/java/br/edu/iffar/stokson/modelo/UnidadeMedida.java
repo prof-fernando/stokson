@@ -1,6 +1,10 @@
 package br.edu.iffar.stokson.modelo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * <p>
@@ -13,8 +17,12 @@ import javax.persistence.Entity;
  */
 @Entity
 public class UnidadeMedida extends Entidade {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idUnidadeMedida;
+	@Column(nullable = false, length=45)
 	private String descricao;
+	@Column(nullable = false, length=2)
 	private String sigla;
 
 	public long getIdUnidadeMedida() {

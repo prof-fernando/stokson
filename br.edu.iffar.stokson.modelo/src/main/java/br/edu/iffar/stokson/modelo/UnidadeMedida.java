@@ -16,7 +16,7 @@ import javax.persistence.Id;
  * @since 29 de ago de 2018 21:25:01
  */
 @Entity
-public class UnidadeMedida extends Entidade {
+public class UnidadeMedida extends AEntidade {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idUnidadeMedida;

@@ -2,7 +2,7 @@ package br.edu.iffar.stokson.modelo.dao;
 
 import java.util.List;
 
-import br.edu.iffar.stokson.modelo.Entidade;
+import br.edu.iffar.stokson.modelo.AEntidade;
 import br.edu.iffar.stokson.modelo.Produto;
 
 /**
@@ -20,14 +20,14 @@ public interface IDAO {
 	 * Grava ou atualiza uma entidade no banco de dados
 	 * </p>
 	 */
-	public void gravar(Entidade entidade);
+	public void gravar(AEntidade entidade);
 
 	/**
 	 * <p>
 	 * Remove definitivamente uma entidade no banco de dados
 	 * </p>
 	 */
-	public void deletar(Entidade entidade);
+	public void deletar(AEntidade entidade);
 
 	/**
 	 * <p>
@@ -38,7 +38,7 @@ public interface IDAO {
 	 *            Valor utilizado para buscar a entidade (chave primaria)
 	 * @return Entidade carregada a partir do id
 	 */
-	public Entidade buscaPorID(long id);
+	public AEntidade buscaPorID(long id);
 
 	/**
 	 * <p>
@@ -49,6 +49,16 @@ public interface IDAO {
 	 * @return Listagem exclusiva contendo todos as entidade 
 	 * do banco
 	 */
-	public List<? extends  Entidade> buscaTodos();
-
+	public List<? extends  AEntidade> buscaTodos();
+	/**
+	 * <p>
+	 * Cria uma instancia de implementação especifica para uma entidade, ou seja,
+	 * se invocarmos o método com a entidade {@link Produto} teremos como retornoi
+	 * uma classe concreta que implementará a interface {@link IProdutoDAO}. Este método
+	 * implementa o padrão de projeto Factory Abstract Method 
+	 * </p>
+	 * @param classeEntidade classe da entidade que se deseja criar um novo dao
+	 * @return Implementação concreta da interface específica da entidade solicitada
+	 */
+	public <Futuro extends IDAO> Futuro criaDAO(Class<? extends AEntidade> classeEntidade);
 }

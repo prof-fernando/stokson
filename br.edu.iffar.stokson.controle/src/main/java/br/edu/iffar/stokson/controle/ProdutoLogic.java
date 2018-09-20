@@ -1,6 +1,7 @@
 package br.edu.iffar.stokson.controle;
 
 import br.edu.iffar.stokson.modelo.Produto;
+import br.edu.iffar.stokson.modelo.dao.IProdutoDAO;
 
 /**
  * <p>
@@ -17,6 +18,8 @@ public class ProdutoLogic {
     */
 	public void criarNovoProduto() {
 		Produto p = new Produto();
+	
+		
 	}
 	
 }

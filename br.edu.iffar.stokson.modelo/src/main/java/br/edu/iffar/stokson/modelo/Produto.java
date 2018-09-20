@@ -21,7 +21,7 @@ import javax.persistence.TemporalType;
  * @since 29 de ago de 2018 21:46:21
  */
 @Entity
-public class Produto extends Entidade {
+public class Produto extends AEntidade {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idProduto;

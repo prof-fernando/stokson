@@ -16,7 +16,7 @@ import javax.persistence.Id;
  * @since 28/08/2018 20:27
  */
 @Entity
-public class Usuario extends Entidade {
+public class Usuario extends AEntidade {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idUsuario;

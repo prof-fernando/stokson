@@ -25,7 +25,7 @@ import javax.persistence.ManyToOne;
  * @since 29 de ago de 2018 21:30:00
  */
 @Entity
-public class CategoriaProduto extends Entidade {
+public class CategoriaProduto extends AEntidade {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idCategoriaProduto;

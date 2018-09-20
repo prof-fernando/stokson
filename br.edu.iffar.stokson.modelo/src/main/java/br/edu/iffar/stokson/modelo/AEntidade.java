@@ -12,7 +12,7 @@ import java.util.Date;
  * @author Fernando Luis
  * @since 29 de ago de 2018 21:16:59
  */
-public abstract class Entidade {
+public abstract class AEntidade {
 	private Date dataCadaastro;
 	private Date dataAtualizacao;
 

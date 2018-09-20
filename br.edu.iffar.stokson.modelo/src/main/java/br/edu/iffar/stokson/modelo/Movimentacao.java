@@ -24,7 +24,7 @@ import javax.persistence.TemporalType;
  * @since 29 de ago de 2018 21:59:21
  */
 @Entity
-public class Movimentacao extends Entidade {
+public class Movimentacao extends AEntidade {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idMovimentacao;

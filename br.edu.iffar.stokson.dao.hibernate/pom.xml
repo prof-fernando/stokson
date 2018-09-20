@@ -12,6 +12,10 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>5.3.6.Final</version>
 		</dependency>
-
+       <dependency>
+          <groupId>br.edu.iffar.stokson</groupId>
+          <artifactId>br.edu.iffar.stokson.modelo</artifactId>
+          <version>1.0</version>
+       </dependency>
 	</dependencies>
 </project>

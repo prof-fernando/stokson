@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.hql.internal.ast.tree.RestrictableStatement;
 
 import br.edu.iffar.stokson.modelo.AEntidade;
+import br.edu.iffar.stokson.modelo.CategoriaProduto;
+import br.edu.iffar.stokson.modelo.Produto;
 import br.edu.iffar.stokson.modelo.dao.IDAO;
 
 /**
@@ -20,7 +20,7 @@ import br.edu.iffar.stokson.modelo.dao.IDAO;
  */
 public class HibernateDAO implements IDAO {
 	private Class<? extends AEntidade> classeEntidade;
-	private Session sessao;
+	protected Session sessao;
 
 	/**
 	 * <p>
@@ -28,7 +28,7 @@ public class HibernateDAO implements IDAO {
 	 * </p>
 	 */
 	public HibernateDAO() {
-
+		this(null);
 	}
 
 	/**
@@ -40,6 +40,7 @@ public class HibernateDAO implements IDAO {
 	 */
 	public HibernateDAO(Class<? extends AEntidade> classeEntidade) {
 		this.classeEntidade = classeEntidade;
+		this.sessao = HibernateHelper.getSession();
 	}
 
 	public void gravar(AEntidade entidade) {
@@ -64,8 +65,22 @@ public class HibernateDAO implements IDAO {
 	}
 
 	public <Futuro extends IDAO> Futuro criaDAO(Class<? extends AEntidade> classeEntidade) {
-		
-		return (Futuro) classeEntidade.newInstance();
+		StringBuffer pacote = new StringBuffer();
+		pacote.append("br.edu.iffar.stokson.dao.hibernate.");
+		pacote.append(classeEntidade.getSimpleName());
+		pacote.append("DAO");
+		try {
+			Class classeDAO = Class.forName(pacote.toString());
+			return (Futuro) classeDAO.getDeclaredConstructor().newInstance();
+		} catch (Exception e) {
+			throw new RuntimeException("Falha ao gerar dao de " + classeEntidade);
+		}
 	}
-
+	public static void main(String[] args) {
+		CategoriaProduto c = new CategoriaProduto();
+		c.setDescricao("Primeiro de tudo");
+		
+		
+		new HibernateDAO().gravar(c);;
+	}
 }

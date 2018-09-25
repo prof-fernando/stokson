@@ -35,11 +35,9 @@ public class Produto extends AEntidade {
 	@Temporal(TemporalType.DATE)
 	private Date dataValidade;
 	@ManyToOne
-	@Column(nullable = false)
-	@JoinColumn(name = "idCategoriaProduto")
+	@JoinColumn(name = "idCategoriaProduto", nullable = false)
 	private CategoriaProduto categoriaProduto;
 	@ManyToOne
-	@Column
 	@JoinColumn(name = "idUnidadeMedida")
 	private UnidadeMedida unidadeMedida;
 

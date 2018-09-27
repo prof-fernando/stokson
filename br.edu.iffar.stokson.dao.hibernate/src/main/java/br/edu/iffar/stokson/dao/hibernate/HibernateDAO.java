@@ -44,6 +44,7 @@ public class HibernateDAO implements IDAO {
 	}
 
 	public void gravar(AEntidade entidade) {
+		sessao.clear();
 		sessao.beginTransaction();
 		sessao.saveOrUpdate(entidade);
 		sessao.getTransaction().commit();
@@ -73,14 +74,16 @@ public class HibernateDAO implements IDAO {
 			Class classeDAO = Class.forName(pacote.toString());
 			return (Futuro) classeDAO.getDeclaredConstructor().newInstance();
 		} catch (Exception e) {
-			throw new RuntimeException("Falha ao gerar dao de " + classeEntidade);
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao gerar dao de " + classeEntidade );
 		}
 	}
-	public static void main(String[] args) {
-		CategoriaProduto c = new CategoriaProduto();
-		c.setDescricao("Primeiro de tudo");
-		
-		
-		new HibernateDAO().gravar(c);;
-	}
+	// Construtor exclusivo para testes iniciais
+//	public static void main(String[] args) {
+//		CategoriaProduto c = new CategoriaProduto();
+//		c.setDescricao("Primeiro de tudo");
+//		
+//		
+//		new HibernateDAO().gravar(c);;
+//	}
 }

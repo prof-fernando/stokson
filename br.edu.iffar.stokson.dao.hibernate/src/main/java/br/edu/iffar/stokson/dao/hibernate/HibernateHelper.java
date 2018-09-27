@@ -14,8 +14,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import br.edu.iffar.stokson.modelo.CategoriaProduto;
+import br.edu.iffar.stokson.modelo.Movimentacao;
 import br.edu.iffar.stokson.modelo.Produto;
 import br.edu.iffar.stokson.modelo.UnidadeMedida;
+import br.edu.iffar.stokson.modelo.Usuario;
 
 public class HibernateHelper {
 	private static SessionFactory fabrica;
@@ -32,8 +34,10 @@ public class HibernateHelper {
 		Configuration cfg = new Configuration();
 		// informa ao hibernate quais sao as enmtidades anotadas
 		cfg.addAnnotatedClass(CategoriaProduto.class);
-//		cfg.addAnnotatedClass(UnidadeMedida.class);
-//		cfg.addAnnotatedClass(Produto.class);
+		cfg.addAnnotatedClass(UnidadeMedida.class);
+		cfg.addAnnotatedClass(Produto.class);
+		cfg.addAnnotatedClass(Usuario.class);
+		cfg.addAnnotatedClass(Movimentacao.class);
 		// realiza a leitura do arquivo de configuracao
 		cfg.configure();
 		// cria uma nova fabrica

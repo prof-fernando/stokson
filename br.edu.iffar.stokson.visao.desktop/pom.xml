@@ -11,5 +11,10 @@
 			<artifactId>br.edu.iffar.stokson.controle</artifactId>
 			<version>1.0</version>
 		</dependency>
+		<dependency>
+			<groupId>br.edu.iffar.stokson</groupId>
+			<artifactId>br.edu.iffar.stokson.dao.hibernate</artifactId>
+			<version>1.0</version>
+		</dependency>
 	</dependencies>
 </project>

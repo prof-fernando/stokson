@@ -12,7 +12,11 @@ import java.util.Date;
  * @author Fernando Luis
  * @since 29 de ago de 2018 21:16:59
  */
+
+//@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public abstract class AEntidade {
+	//@Column
+//	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadaastro;
 	private Date dataAtualizacao;
 

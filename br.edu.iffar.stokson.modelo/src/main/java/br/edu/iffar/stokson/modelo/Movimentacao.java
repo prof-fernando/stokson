@@ -38,12 +38,10 @@ public class Movimentacao extends AEntidade {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataHora;
 	@ManyToOne
-	@Column(nullable=false)
-	@JoinColumn(name="idProduto")
+	@JoinColumn(name="idProduto", nullable=false)
 	private Produto produto;
 	@ManyToOne
-	@Column(nullable=false)
-	@JoinColumn(name="idUsuario")
+	@JoinColumn(name="idUsuario", nullable=false)
 	// operador que realizou a movimentacao
 	private Usuario usuario;
 

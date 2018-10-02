@@ -1,5 +1,6 @@
 package br.edu.iffar.stokson.dao.hibernate;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -78,7 +79,7 @@ public class HibernateDAO implements IDAO {
 			throw new RuntimeException("Falha ao gerar dao de " + classeEntidade );
 		}
 	}
-	// Construtor exclusivo para testes iniciais
+//	 //Construtor exclusivo para testes iniciais
 //	public static void main(String[] args) {
 //		CategoriaProduto c = new CategoriaProduto();
 //		c.setDescricao("Primeiro de tudo");

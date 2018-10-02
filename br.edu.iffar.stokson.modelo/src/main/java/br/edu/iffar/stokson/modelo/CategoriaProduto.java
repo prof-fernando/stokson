@@ -59,4 +59,8 @@ public class CategoriaProduto extends AEntidade {
 		this.categoriaSuperior = categoriaSuperior;
 	}
 
+	public long getId() {
+		return getIdCategoriaProduto();
+	}
+
 }

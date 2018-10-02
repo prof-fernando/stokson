@@ -93,4 +93,8 @@ public class Movimentacao extends AEntidade {
 		this.usuario = usuario;
 	}
 
+	public long getId() {
+		return getIdMovimentacao();
+	}
+
 }

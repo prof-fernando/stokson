@@ -2,6 +2,13 @@ package br.edu.iffar.stokson.modelo;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 /**
  * <p>
  * Entidade abstrata que recebe os comportamentos comuns a todas as a entidades.
@@ -12,20 +19,21 @@ import java.util.Date;
  * @author Fernando Luis
  * @since 29 de ago de 2018 21:16:59
  */
-
-//@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@MappedSuperclass
 public abstract class AEntidade {
-	//@Column
-//	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataCadaastro;
+   @Column(nullable=false)
+   @Temporal(TemporalType.TIMESTAMP)
+	private Date dataCadastro;
+   @Column
+   @Temporal(TemporalType.TIMESTAMP)
 	private Date dataAtualizacao;
 
-	public Date getDataCadaastro() {
-		return dataCadaastro;
+	public Date getDataCadastro() {
+		return dataCadastro;
 	}
 
-	public void setDataCadaastro(Date dataCadaastro) {
-		this.dataCadaastro = dataCadaastro;
+	public void setDataCadastro(Date dataCadaastro) {
+		this.dataCadastro = dataCadaastro;
 	}
 
 	public Date getDataAtualizacao() {
@@ -35,5 +43,10 @@ public abstract class AEntidade {
 	public void setDataAtualizacao(Date dataAtualizacao) {
 		this.dataAtualizacao = dataAtualizacao;
 	}
-
+	/**
+	 * <p>
+	 * Retorna o campo chave (id) de cada entidade
+	 * </p>
+	 * 	 */
+	public abstract long getId();
 }

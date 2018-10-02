@@ -47,7 +47,7 @@ public class FrmPrincipal extends JFrame {
 				usu.setSenha("123");
 				usu.setSenha("888888");
 				// solicita para a logica gravar
-				ul.gravarUsuario(usu);
+				ul.gravar(usu);
 				// confirmação para a gravacao
 				
 				String msg = "Usuario gravado com sucesso, seu id é "+ usu.getIdUsuario();

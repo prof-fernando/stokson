@@ -49,4 +49,8 @@ public class UnidadeMedida extends AEntidade {
 		this.sigla = sigla;
 	}
 
+	public long getId() {
+		return getIdUnidadeMedida();
+	}
+
 }

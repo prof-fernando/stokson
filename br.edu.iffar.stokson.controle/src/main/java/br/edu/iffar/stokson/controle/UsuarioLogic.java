@@ -12,26 +12,27 @@ import br.edu.iffar.stokson.modelo.dao.IUsuarioDAO;
  * @author Fernando Luis
  * @since 26 de set de 2018 21:36:28
  */
-public class UsuarioLogic {
+public class UsuarioLogic extends ALogic {
 	// referencia a especificação de presistencia
 	IUsuarioDAO dao;
 
 	public UsuarioLogic() {
-		// inicializa a especificacao com o modelo concreto de implementacao
-		dao = FabricaDao.getModeloImplementacao().criaDAO(Usuario.class);
+		super(Usuario.class);
+		this.dao = getDAO();
 	}
 
 	
-	public void gravarUsuario(Usuario u){
+	public void gravar(Usuario u){
 		// antes de gravar verifica se já não existe um usuario com o email 
-		// especificao, caso exista, realiza-se o update ao inves do insert
+		// especificado, caso exista, realiza-se o update ao inves do insert
 		Usuario aux = dao.buscaPorEmail(u.getEmail());
 		if(aux != null) {
 			// existe um usuario com este email
 			// neste caso faz-se a atualização
 			u.setIdUsuario(aux.getIdUsuario());
+			u.setDataCadastro(aux.getDataCadastro());
 		}
-		dao.gravar(u);
+		super.gravar(u);
 	}
 
 

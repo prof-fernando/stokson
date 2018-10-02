@@ -59,4 +59,8 @@ public class Usuario extends AEntidade {
 		this.senha = senha;
 	}
 
+	public long getId() {
+		return getIdUsuario();
+	}
+
 }

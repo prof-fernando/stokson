@@ -97,4 +97,8 @@ public class Produto extends AEntidade {
 		this.unidadeMedida = unidadeMedida;
 	}
 
+	public long getId() {
+		return getIdProduto();
+	}
+
 }

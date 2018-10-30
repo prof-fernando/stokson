@@ -17,6 +17,10 @@ import br.edu.iffar.stokson.modelo.dao.IProdutoDAO;
 public class ProdutoDAO extends HibernateDAO
                                                          implements IProdutoDAO{
 
+	public ProdutoDAO() {
+		super(Produto.class);
+	}
+	
 	public Produto buscaPorCodigoBarras(String codigo) {
 		Criteria c = sessao.createCriteria(Produto.class);
 		// adiciona uma restricao

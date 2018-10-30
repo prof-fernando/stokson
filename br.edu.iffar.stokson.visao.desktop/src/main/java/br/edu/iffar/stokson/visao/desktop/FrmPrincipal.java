@@ -37,29 +37,14 @@ public class FrmPrincipal extends JFrame {
          getContentPane().add(btnGravar);
          btnGravar.addActionListener(  new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-                // cria o objeto de logic
-				UsuarioLogic ul = new UsuarioLogic();
-				// objeto que sera persistido (temporariamente)
-				Usuario usu = new Usuario();
-
-				usu.setNome("'Bastião");
-				usu.setEmail("bastiao@gmail.com");
-				usu.setSenha("123");
-				usu.setSenha("888888");
-				// solicita para a logica gravar
-				ul.gravar(usu);
-				// confirmação para a gravacao
-				
-				String msg = "Usuario gravado com sucesso, seu id é "+ usu.getIdUsuario();
-				
-				JOptionPane.showMessageDialog(null,msg);
-				
+              new FrmListarProduto(   FrmPrincipal.this );
 			}
 		});
 	}
 
 	public static void main(String[] args) {
 		new FrmPrincipal();
+	
 		FabricaDao.defineModeloPersistencia(new HibernateDAO());
 	}
 }

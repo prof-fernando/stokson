@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.util.List;
 
@@ -76,7 +78,27 @@ public class FrmListarProduto extends JFrame {
 		JButton btnBuscar = new JButton("ok");
 		JButton btnAdicionar = new JButton("+ novo");
 		JButton btnVoltar = new JButton("<- voltar");
-
+       // adicionar o listener nos botões
+		btnVoltar.addActionListener( new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				telaPrincipal.setVisible(true);
+				// fecha a janela atual
+				FrmListarProduto.this.dispose();
+				
+			}
+		} );
+		// acao do botao adicionar
+		btnAdicionar.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				new FrmProduto( FrmListarProduto.this );
+			}
+		});
+		
+		
+		
+		// cria a tabela
 		this.tabela = new JTable();
 		String[] colunas = new String[] { "Descrição", "Grupo", "Medida", "--", "--" };
 		// cria o modelo personalizado
@@ -107,7 +129,9 @@ public class FrmListarProduto extends JFrame {
 		linha2.add(scrollPanel);
 		// linha 3
 		JPanel linha3 = new JPanel();
-		linha3.setBackground(Color.BLUE);
+		linha3.add(btnVoltar);
+		linha3.add(btnAdicionar);
+		//linha3.setBackground(Color.BLUE);
 
 		// adiciona os paineis a tela
 		getContentPane().add(linha1, BorderLayout.NORTH);

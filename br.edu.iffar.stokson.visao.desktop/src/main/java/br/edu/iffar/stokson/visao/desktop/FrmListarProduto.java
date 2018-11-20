@@ -54,7 +54,7 @@ public class FrmListarProduto extends JFrame {
 	private void popularTabela() {
 		ProdutoLogic logica = new ProdutoLogic();
 		// pega todos os produtos do banco
-		List produtos = logica.buscaTodosProdutos();
+		List produtos = logica.buscaTodos();
 
 		// verifica se existem itens
 		if (produtos != null && produtos.size() > 0) {

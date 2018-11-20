@@ -13,16 +13,13 @@ import br.edu.iffar.stokson.modelo.dao.ICategoriaProdutoDAO;
  * @author Fernando Luis
  * @since 4 de set de 2018 19:48:35
  */
-public class CategoriaProdutoControle extends ALogic {
+public class CategoriaProdutoLogic extends ALogic {
 	private ICategoriaProdutoDAO dao;
 
-	public CategoriaProdutoControle() {
+	public CategoriaProdutoLogic() {
 		super(CategoriaProduto.class);
 		this.dao = getDAO();
 	}
-  //TODO  v externalizar essa acao
-	public List buscaTodosProdutos() {
-		return dao.buscaTodos();
-	}
+  
 	
 }

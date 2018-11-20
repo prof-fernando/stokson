@@ -53,4 +53,13 @@ public class UnidadeMedida extends AEntidade {
 		return getIdUnidadeMedida();
 	}
 
+	/**
+	 * <p>
+	 * Sobreescrevendo método para apresentar uma informação amigável ao imprimir
+	 * um objeto, como por exemplo e um JcomboBox
+	 * </p>
+	 */
+	public String toString() {
+		return  descricao +" ("+sigla+")";
+	}
 }

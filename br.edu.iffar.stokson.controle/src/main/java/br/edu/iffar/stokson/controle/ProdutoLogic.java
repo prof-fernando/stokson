@@ -20,9 +20,6 @@ public class ProdutoLogic extends ALogic {
 		super(Produto.class);
 		this.dao = getDAO();
 	}
-  //TODO  v externalizar essa acao
-	public List buscaTodosProdutos() {
-		return dao.buscaTodos();
-	}
+ 
 	
 }

@@ -1,6 +1,7 @@
 package br.edu.iffar.stokson.controle;
 
 import java.util.Date;
+import java.util.List;
 
 import br.edu.iffar.stokson.modelo.AEntidade;
 import br.edu.iffar.stokson.modelo.dao.FabricaDao;
@@ -51,4 +52,15 @@ public class ALogic {
 		this.dao.gravar(entidade);
 	}
 
+	/**
+	 * <p>
+	 * Retorna uma lista com todos os objetos de uma determinada entidade, a
+	 * entidade é definida quando se cria um objeto de lógica
+	 * </p>
+	 * 
+	 * @return Listagem com todos os objetos
+	 */
+	public List buscaTodos() {
+		return dao.buscaTodos();
+	}
 }

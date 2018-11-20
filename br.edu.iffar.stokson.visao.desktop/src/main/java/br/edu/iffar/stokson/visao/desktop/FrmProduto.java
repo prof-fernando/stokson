@@ -2,14 +2,27 @@ package br.edu.iffar.stokson.visao.desktop;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import br.edu.iffar.stokson.controle.CategoriaProdutoLogic;
+import br.edu.iffar.stokson.controle.ProdutoLogic;
+import br.edu.iffar.stokson.controle.UnidadeMedidaLogic;
 import br.edu.iffar.stokson.modelo.CategoriaProduto;
 import br.edu.iffar.stokson.modelo.Produto;
 import br.edu.iffar.stokson.modelo.UnidadeMedida;
@@ -67,6 +80,55 @@ public class FrmProduto extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		JButton btnGravar = new JButton("Gravar");
 
+		btnVoltar.addActionListener(   new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// torna visivel a tela de listagem de produto
+				telaDeOrigem.setVisible(true);
+				// fecha a janela atual
+				FrmProduto.this.dispose();
+			}
+		} );
+		
+		btnGravar.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				   Produto p = new Produto();
+				   
+				   p.setCodigoBarras(   jtfCodigoBarras.getText()   );
+				   p.setDescricao(   jtfDescricao.getText()   );
+				
+				    // converte a string em data
+				   // formato do banco é dd/MM/aaaa
+				   DateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+				   try {
+					Date dataFormulatio = formatador.parse(   jtfDataVenc.getText()   );
+					p.setDataValidade(dataFormulatio);
+					// seta direto sem tratar se é uma quasntidade válida
+					// o correto é tratar
+					float quantidade = Float.parseFloat(   jtfQuantidade.getText());
+					p.setQuantidadeMinima(   quantidade          );
+					p.setCategoriaProduto(  (CategoriaProduto) cmbCategoria.getSelectedItem()  );
+					p.setUnidadeMedida( (UnidadeMedida) cmbUnidade.getSelectedItem() );
+					
+					// solicita gravacao
+					 ProdutoLogic controle  = new ProdutoLogic();
+					 controle.gravar(p);
+					
+					
+				} catch (ParseException e1) {
+					// abre centralizado com base na ppsição da janela atual
+					JOptionPane.showMessageDialog(FrmProduto.this,  "Data venc inválida -> dd/mm/aaaa" );
+					e1.printStackTrace();
+					// lanca excecao para abortar o processo
+					throw new RuntimeException("Data inválida");
+				}
+				   
+				   
+                    JOptionPane.showMessageDialog(null,"Gravado !");				
+			}
+		});
+		
 		// linha do formulario
 		// objeto de configuracao do layout
 		// primeira linha
@@ -90,8 +152,47 @@ public class FrmProduto extends JFrame {
 		linhaForm.add(jl7, new Defs(3, 2));
 		linhaForm.add(cmbUnidade, new Defs(3, 3, true));
 
+		populaComboCategoria(cmbCategoria);
+		populaComboUnidade(cmbUnidade);
+
+		// linha de botoes
+		linhaBotoes.add(btnVoltar);
+		linhaBotoes.add(btnGravar);
+
 		// adiciona o painel a tela
+		// define o layout da tela
+		setLayout(new GridLayout(2, 1));
 		getContentPane().add(linhaForm);
+		getContentPane().add(linhaBotoes);
+	}
+
+	private void populaComboCategoria(JComboBox<CategoriaProduto> cmbCategoria) {
+		// busca os dados no banco
+		CategoriaProdutoLogic controle = new CategoriaProdutoLogic();
+		List<CategoriaProduto> categorias = controle.buscaTodos();
+
+		if (categorias != null) {
+			Iterator<CategoriaProduto> it = categorias.iterator();
+			while (it.hasNext()) {
+				// pega o objeto
+				CategoriaProduto itemCorrente = it.next();
+				// adiciona a combo box
+				cmbCategoria.addItem(itemCorrente);
+			}
+		}
+	}
+
+	private void populaComboUnidade(JComboBox<UnidadeMedida> cmbUnidade) {
+		// busca os dados no banco
+		UnidadeMedidaLogic controle = new UnidadeMedidaLogic();
+		List<UnidadeMedida> unidades = controle.buscaTodos();
+
+		if (unidades != null) {
+			// forma alternativa para percorrer os itens da lista sem utilizar o iterator
+			for (UnidadeMedida itemCorrente : unidades) {
+				cmbUnidade.addItem(itemCorrente);
+			}
+		}
 	}
 
 	@Deprecated

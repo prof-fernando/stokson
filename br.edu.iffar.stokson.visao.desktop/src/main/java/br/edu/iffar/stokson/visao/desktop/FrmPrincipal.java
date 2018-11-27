@@ -5,11 +5,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
-import br.edu.iffar.stokson.controle.UsuarioLogic;
 import br.edu.iffar.stokson.dao.hibernate.HibernateDAO;
-import br.edu.iffar.stokson.modelo.Usuario;
 import br.edu.iffar.stokson.modelo.dao.FabricaDao;
 
 /**
@@ -28,6 +27,13 @@ public class FrmPrincipal extends JFrame {
 		setSize(320, 240);
 		setLocationRelativeTo(null);
 		desenhaInterface();
+		
+		try {
+			UIManager.setLookAndFeel(    "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel"     );
+		} catch (Exception e) {
+		// fukll ignoire
+		}
+		
 		setVisible(true);
 	
 	}

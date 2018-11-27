@@ -20,6 +20,15 @@ public class ProdutoLogic extends ALogic {
 		super(Produto.class);
 		this.dao = getDAO();
 	}
+   /**
+    * <p>
+    * Busca produtos que contenham em seu código de barras ou desdrição o termo
+    * informado
+    * </p>
+    */
+	public List<Produto> buscaPorTermo(String termoBuscado) {
+		return dao.buscaPorSimilaridade(termoBuscado);
+	}
  
 	
 }

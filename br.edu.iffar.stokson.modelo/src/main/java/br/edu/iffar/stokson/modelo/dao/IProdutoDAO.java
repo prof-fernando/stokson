@@ -23,5 +23,13 @@ public interface IProdutoDAO extends IDAO {
 	 * @return Produto associado ao código de barras
 	 */
 	public Produto buscaPorCodigoBarras(String codigo);
-
+	/**
+	 * <p>
+	 * Busca pelo campo ou coluna descricao e código de barras, de forma a retornar
+	 * os produtos que contenham parcialmente ou em sua tolidade o termo digitado.
+	 * Equivale a um comomano ilike em banco de dados
+	 * </p>
+	 */
+	public List<Produto> buscaPorSimilaridade(String termo);
+	
 }

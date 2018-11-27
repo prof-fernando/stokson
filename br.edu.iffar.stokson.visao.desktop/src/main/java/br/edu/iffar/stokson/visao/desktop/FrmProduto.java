@@ -85,6 +85,7 @@ public class FrmProduto extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// torna visivel a tela de listagem de produto
 				telaDeOrigem.setVisible(true);
+				telaDeOrigem.popularTabela();
 				// fecha a janela atual
 				FrmProduto.this.dispose();
 			}
@@ -93,28 +94,33 @@ public class FrmProduto extends JFrame {
 		btnGravar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				   Produto p = new Produto();
+				 if(produto == null) {
+					 produto = new Produto();	 
+				 }
+				
 				   
-				   p.setCodigoBarras(   jtfCodigoBarras.getText()   );
-				   p.setDescricao(   jtfDescricao.getText()   );
+				   produto.setCodigoBarras(   jtfCodigoBarras.getText()   );
+				   produto.setDescricao(   jtfDescricao.getText()   );
 				
 				    // converte a string em data
 				   // formato do banco é dd/MM/aaaa
 				   DateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
 				   try {
 					Date dataFormulatio = formatador.parse(   jtfDataVenc.getText()   );
-					p.setDataValidade(dataFormulatio);
+					produto.setDataValidade(dataFormulatio);
 					// seta direto sem tratar se é uma quasntidade válida
 					// o correto é tratar
 					float quantidade = Float.parseFloat(   jtfQuantidade.getText());
-					p.setQuantidadeMinima(   quantidade          );
-					p.setCategoriaProduto(  (CategoriaProduto) cmbCategoria.getSelectedItem()  );
-					p.setUnidadeMedida( (UnidadeMedida) cmbUnidade.getSelectedItem() );
+					produto.setQuantidadeMinima(   quantidade          );
+					produto.setCategoriaProduto(  (CategoriaProduto) cmbCategoria.getSelectedItem()  );
+					produto.setUnidadeMedida( (UnidadeMedida) cmbUnidade.getSelectedItem() );
 					
 					// solicita gravacao
 					 ProdutoLogic controle  = new ProdutoLogic();
-					 controle.gravar(p);
+					 controle.gravar(produto);
+					jlID.setText(   String.valueOf( produto.getIdProduto()  )     );
 					
+					btnGravar.setText("Atualizar...");
 					
 				} catch (ParseException e1) {
 					// abre centralizado com base na ppsição da janela atual
